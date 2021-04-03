@@ -2,24 +2,18 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-textarea{
-  background: transparent;
-  border: none;
-  resize: none;
-  border-left: 0.1rem solid black;
-  padding: 1rem;
-}
-
-i {
-  font-size: 3rem;
-}
-
+/*
+HEADER
+*/
 .jumbotron {
   text-align: center;
   background-color: transparent;
   border-bottom: 1rem solid black;
 }
 
+/*
+MAIN
+*/
 .time-block{
   border-radius: 1rem;
   border-top: 0.1rem solid white;;
@@ -31,6 +25,14 @@ i {
   padding: 1rem;
   font-size: 2rem;
   border-top: 0.1rem dashed black;
+}
+
+textarea{
+  background: transparent;
+  border: none;
+  resize: none;
+  border-left: 0.1rem solid black;
+  padding: 1rem;
 }
 
 .past {
@@ -57,8 +59,12 @@ i {
   cursor: pointer;
 }
 
+i {
+  font-size: 3rem;
+  transition: all .3s ease-in-out;
+}
+
 .save-button:hover i {
   font-size: 4rem;
   color: black;
-  transition: all .3s ease-in-out;
 }

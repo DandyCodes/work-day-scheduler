@@ -1,7 +1,7 @@
 init();
 
 function init() {
-    $('#currentDay').text(moment().format('dddd, MMMM Do'));
+    $('#current-day').text(moment().format('dddd, MMMM Do'));
     $('.save-button').click(saveTimeBlock);
     setColors();
     loadEvents();
@@ -9,25 +9,26 @@ function init() {
 
 function saveTimeBlock(clickEvent) {
     const timeBlock = clickEvent.target.closest('.time-block');
-    const hourAmPmText = getTimeBlockHourAmPmText(timeBlock);
-    const eventTextArea = getTimeBlockEventTextArea(timeBlock);
+    const hourAmPmText = getHourAmPmText(timeBlock);
+    const eventTextArea = getEventTextArea(timeBlock);
     localStorage.setItem(hourAmPmText, eventTextArea.value);
 }
 
-function getTimeBlockHourAmPmText(timeBlock) {
+function getHourAmPmText(timeBlock) {
     return timeBlock.children[0].textContent;
 }
 
-function getTimeBlockEventTextArea(timeBlock) {
+function getEventTextArea(timeBlock) {
     return timeBlock.children[1];
 }
 
 function setColors() {
     Array.from($('.time-block')).forEach(timeBlock => {
-        const hourAmPmText = getTimeBlockHourAmPmText(timeBlock);
+        const hourAmPmText = getHourAmPmText(timeBlock);
         const hourTwentyFour = getHourTwentyFour(hourAmPmText);
         const tenseClass = getTimeBlockTenseClass(hourTwentyFour);
-        timeBlock.classList.add(tenseClass);
+        const eventTextArea = getEventTextArea(timeBlock);
+        eventTextArea.classList.add(tenseClass);
     });
 }
 
@@ -41,7 +42,7 @@ function getHourTwentyFour(hourAmPmText) {
 }
 
 function getTimeBlockTenseClass(hourTwentyFour) {
-    let currentHourTwentyFour = moment().format('H');
+    const currentHourTwentyFour = moment().format('H');
     if (hourTwentyFour < currentHourTwentyFour) return 'past';
     if (hourTwentyFour == currentHourTwentyFour) return 'present';
     return 'future';
@@ -49,8 +50,8 @@ function getTimeBlockTenseClass(hourTwentyFour) {
 
 function loadEvents() {
     Array.from($('.time-block')).forEach(timeBlock => {
-        const hourAmPmText = getTimeBlockHourAmPmText(timeBlock);
-        const eventTextArea = getTimeBlockEventTextArea(timeBlock);
+        const hourAmPmText = getHourAmPmText(timeBlock);
+        const eventTextArea = getEventTextArea(timeBlock);
         eventTextArea.value = localStorage.getItem(hourAmPmText);
     });
 }
