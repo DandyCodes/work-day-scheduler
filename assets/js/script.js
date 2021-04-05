@@ -24,12 +24,19 @@ function getEventTextArea(timeBlock) {
 
 function setColors() {
     Array.from($('.time-block')).forEach(timeBlock => {
-        const hourAmPmText = getHourAmPmText(timeBlock);
-        const hourTwentyFour = getHourTwentyFour(hourAmPmText);
-        const tenseClass = getTimeBlockTenseClass(hourTwentyFour);
+        const tenseClass = getTimeBlockTenseClass(timeBlock);
         const eventTextArea = getEventTextArea(timeBlock);
         eventTextArea.classList.add(tenseClass);
     });
+}
+
+function getTimeBlockTenseClass(timeBlock) {
+    const hourAmPmText = getHourAmPmText(timeBlock);
+    const hourTwentyFour = getHourTwentyFour(hourAmPmText);
+    const currentHourTwentyFour = moment().format('H');
+    if (hourTwentyFour < currentHourTwentyFour) return 'past';
+    if (hourTwentyFour == currentHourTwentyFour) return 'present';
+    return 'future';
 }
 
 function getHourTwentyFour(hourAmPmText) {
@@ -39,13 +46,6 @@ function getHourTwentyFour(hourAmPmText) {
         hourTwentyFour += 12;
     }
     return hourTwentyFour;
-}
-
-function getTimeBlockTenseClass(hourTwentyFour) {
-    const currentHourTwentyFour = moment().format('H');
-    if (hourTwentyFour < currentHourTwentyFour) return 'past';
-    if (hourTwentyFour == currentHourTwentyFour) return 'present';
-    return 'future';
 }
 
 function loadEvents() {
