@@ -13,6 +13,7 @@ The UI is clean, polished and responsive to multiple screen sizes.
 The current day is displayed at the top of the calendar.
 Timeblocks for standard business hours are displayed.
 Each timeblock is color coded to indicate whether it is in the past, present, or future.
+These colors are automatically updated even when the page is left open.
 The user can enter an event as text in a timeblock.
 The user can click the save button for that timeblock which saves the associated event text in local storage.
 The user can refresh the page and the saved events persist.
