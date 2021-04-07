@@ -3,6 +3,7 @@ init();
 function init() {
     $('#current-day').text(moment().format('dddd, MMMM Do'));
     $('.save-button').click(saveTimeBlock);
+    setColors();
     setInterval(setColors, 60000);
     loadEvents();
 }
